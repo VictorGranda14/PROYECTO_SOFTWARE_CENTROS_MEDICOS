@@ -1,0 +1,23 @@
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
+}
+
+.sidebar, .content, .contact-info {
+  padding: 1rem;
+}
+
+.sidebar {
+  background: #f4f4f4;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ion-card {
+  width: 100%;
+}

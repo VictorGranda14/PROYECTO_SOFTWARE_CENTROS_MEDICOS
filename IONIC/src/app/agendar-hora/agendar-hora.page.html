@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        Logo
+      </ion-button>
+      <ion-button>
+        Horarios
+      </ion-button>
+      <ion-button>
+        Ver Exámenes
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Usuario Paciente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge color="danger">3</ion-badge>
+      </ion-button>
+      <ion-button>
+        Perfil
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="main-container">
+    <div class="sidebar">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>*horario funcionario salud*</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <div class="content">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Agendar hora</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col></ion-col>
+              <ion-col class="ion-text-center">Lunes 22</ion-col>
+              <ion-col class="ion-text-center">Martes 23</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>Ma&ntilde;ana</ion-col>
+              <ion-col class="available"></ion-col>
+              <ion-col class="occupied"></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>Tarde</ion-col>
+              <ion-col class="available"></ion-col>
+              <ion-col class="occupied"></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>Noche</ion-col>
+              <ion-col class="occupied"></ion-col>
+              <ion-col class="available"></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <div class="legend">
+        <div>
+          <div class="available"></div>
+          <ion-label>Disponible</ion-label>
+        </div>
+        <div>
+          <div class="occupied"></div>
+          <ion-label>Ocupado</ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

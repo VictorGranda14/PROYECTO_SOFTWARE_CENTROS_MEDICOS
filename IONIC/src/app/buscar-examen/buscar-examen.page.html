@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        Logo
+      </ion-button>
+      <ion-button>
+        Horarios
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Usuario Funcionario salud</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge color="danger">3</ion-badge>
+      </ion-button>
+      <ion-button>
+        Perfil
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="main-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Buscar examen medico</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="form-container">
+          <ion-item>
+            <ion-label position="floating">Nombre paciente</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Apellido paciente</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Rut</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Fecha</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY"></ion-datetime>
+          </ion-item>
+          <ion-button expand="block" class="ion-margin-top">Buscar</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-label>Próximo paciente: XXXXX</ion-label><br>
+        <ion-label>Hora: XX:XX</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="sidebar">
+    <ion-label>*horario funcionario salud*</ion-label>
+  </div>
+</ion-content>

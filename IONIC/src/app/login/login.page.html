@@ -1,0 +1,38 @@
+<ion-content class="ion-padding">
+  <div class="logo">
+    <ion-button shape="round" fill="outline">
+      Logo
+    </ion-button>
+  </div>
+  <div class="login-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Inicio sesión</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Rut</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-button expand="block" class="ion-margin-top">Inicia sesión con:</ion-button>
+        <div class="alternative-login">
+          <ion-button fill="clear">
+            <ion-icon name="mail-outline"></ion-icon>
+            Correo
+          </ion-button>
+          <ion-button fill="clear">
+            <ion-icon name="id-card-outline"></ion-icon>
+            Carnet
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div class="register">
+      <p>Si no tienes cuenta <a href="/register">regístrate</a></p>
+    </div>
+  </div>
+</ion-content>
