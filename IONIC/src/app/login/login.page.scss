@@ -33,3 +33,18 @@
     text-decoration: none;
   }
   
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+  }
+  
+  .login-card {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 50px;
+  }
+  
+  

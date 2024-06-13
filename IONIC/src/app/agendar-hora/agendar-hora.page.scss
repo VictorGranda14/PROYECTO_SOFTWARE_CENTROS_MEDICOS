@@ -1,54 +1,53 @@
 .main-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 1rem;
-  }
-  
-  .sidebar {
-    background: #f4f4f4;
-    padding: 1rem;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  ion-card {
-    width: 100%;
-  }
-  
-  ion-grid {
-    width: 100%;
-  }
-  
-  .available {
-    background-color: green;
-    border-radius: 8px;
-    height: 50px;
-  }
-  
-  .occupied {
-    background-color: red;
-    border-radius: 8px;
-    height: 50px;
-  }
-  
-  .legend {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1rem;
-  }
-  
-  .legend div {
-    display: flex;
-    align-items: center;
-  }
-  
-  .legend div div {
-    width: 20px;
-    height: 20px;
-    margin-right: 0.5rem;
-  }
-  
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.sidebar {
+  background: #f4f4f4;
+  padding: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ion-card {
+  width: 100%;
+}
+
+ion-grid {
+  width: 100%;
+}
+
+.available {
+  background-color: green;
+  border-radius: 8px;
+  height: 50px;
+}
+
+.occupied {
+  background-color: red;
+  border-radius: 8px;
+  height: 50px;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+}
+
+.legend div div {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}

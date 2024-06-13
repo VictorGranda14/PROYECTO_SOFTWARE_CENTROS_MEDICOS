@@ -1,21 +1,15 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="navigateToPage('/home')">
+        <ion-icon name="home"></ion-icon>
         Logo
       </ion-button>
-      <ion-button>
-        Horarios
-      </ion-button>
     </ion-buttons>
-    <ion-title>Usuario Funcionario salud</ion-title>
+    <ion-title>Usuario Paciente</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="notifications-outline"></ion-icon>
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
-      <ion-button>
-        Perfil
+      <ion-button (click)="navigateToPage('/login')">
+        <ion-icon name="log-in"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -23,12 +17,19 @@
 
 <ion-content class="ion-padding">
   <div class="main-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title class="ion-text-center">Buscar examen medico</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="form-container">
+    <div class="sidebar">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>*horario funcionario salud*</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <div class="content">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Buscar examen médico</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
           <ion-item>
             <ion-label position="floating">Nombre paciente</ion-label>
             <ion-input type="text"></ion-input>
@@ -46,17 +47,18 @@
             <ion-datetime display-format="DD/MM/YYYY"></ion-datetime>
           </ion-item>
           <ion-button expand="block" class="ion-margin-top">Buscar</ion-button>
+        </ion-card-content>
+      </ion-card>
+      <div class="legend">
+        <div>
+          <div class="available"></div>
+          <ion-label>Disponible</ion-label>
         </div>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-content>
-        <ion-label>Próximo paciente: XXXXX</ion-label><br>
-        <ion-label>Hora: XX:XX</ion-label>
-      </ion-card-content>
-    </ion-card>
-  </div>
-  <div class="sidebar">
-    <ion-label>*horario funcionario salud*</ion-label>
+        <div>
+          <div class="occupied"></div>
+          <ion-label>Ocupado</ion-label>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

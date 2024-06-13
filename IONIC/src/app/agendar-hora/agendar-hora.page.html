@@ -1,24 +1,15 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="navigateToPage('/home')">
+        <ion-icon name="home"></ion-icon>
         Logo
-      </ion-button>
-      <ion-button>
-        Horarios
-      </ion-button>
-      <ion-button>
-        Ver Exámenes
       </ion-button>
     </ion-buttons>
     <ion-title>Usuario Paciente</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="notifications-outline"></ion-icon>
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
-      <ion-button>
-        Perfil
+      <ion-button (click)="navigateToPage('/login')">
+        <ion-icon name="log-in"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -46,7 +37,7 @@
               <ion-col class="ion-text-center">Martes 23</ion-col>
             </ion-row>
             <ion-row>
-              <ion-col>Ma&ntilde;ana</ion-col>
+              <ion-col>Mañana</ion-col>
               <ion-col class="available"></ion-col>
               <ion-col class="occupied"></ion-col>
             </ion-row>

@@ -1,38 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+        Logo
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Iniciar Sesión</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login">
+        <ion-icon name="log-in"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-  <div class="logo">
-    <ion-button shape="round" fill="outline">
-      Logo
-    </ion-button>
-  </div>
   <div class="login-container">
-    <ion-card>
+    <ion-card class="login-card">
       <ion-card-header>
-        <ion-card-title class="ion-text-center">Inicio sesión</ion-card-title>
+        <ion-card-title class="ion-text-center">Inicio de sesión</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Rut</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-button expand="block" class="ion-margin-top">Inicia sesión con:</ion-button>
-        <div class="alternative-login">
-          <ion-button fill="clear">
-            <ion-icon name="mail-outline"></ion-icon>
-            Correo
+        <form id="formLogin" (ngSubmit)="login_form_submit()" [formGroup]="loginForm">
+          <ion-item>
+            <ion-label position="floating">Nombre de usuario</ion-label>
+            <ion-input formControlName="username" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" type="password" required></ion-input>
+          </ion-item>
+
+          <ion-button type="submit" expand="block" id="botonInicio" class="ion-margin-top">
+            Iniciar sesión
           </ion-button>
-          <ion-button fill="clear">
-            <ion-icon name="id-card-outline"></ion-icon>
-            Carnet
-          </ion-button>
-        </div>
+        </form>
       </ion-card-content>
     </ion-card>
-    <div class="register">
-      <p>Si no tienes cuenta <a href="/register">regístrate</a></p>
+    <div class="ion-text-center ion-margin-top">
+      <p>Si no posees cuenta, puedes registrarte</p>
+      <ion-button routerLink="/register" fill="clear">
+        <strong>Crear una nueva cuenta</strong>
+      </ion-button>
     </div>
   </div>
 </ion-content>
