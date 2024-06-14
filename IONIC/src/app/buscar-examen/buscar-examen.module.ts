@@ -8,12 +8,15 @@ import { BuscarExamenPageRoutingModule } from './buscar-examen-routing.module';
 
 import { BuscarExamenPage } from './buscar-examen.page';
 
+import { ComponentsModule } from '../components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BuscarExamenPageRoutingModule
+    BuscarExamenPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [BuscarExamenPage]
 })

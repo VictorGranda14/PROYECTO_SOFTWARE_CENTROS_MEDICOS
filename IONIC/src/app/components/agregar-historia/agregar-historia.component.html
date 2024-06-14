@@ -1,0 +1,45 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Agregar Historia Clínica</ion-card-title>
+    <ion-card-subtitle>Complete los datos del paciente</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="historiaForm">
+      <ion-item>
+        <ion-label position="floating">Nombre del Paciente</ion-label>
+        <ion-input formControlName="nombrePaciente"></ion-input>
+        <span *ngIf="historiaForm.get('nombrePaciente')?.hasError('required') && historiaForm.get('nombrePaciente')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha</ion-label>
+        <ion-datetime formControlName="fechaIngreso" displayFormat="MM/DD/YYYY"></ion-datetime>
+        <span *ngIf="historiaForm.get('fechaIngreso')?.hasError('required') && historiaForm.get('fechaIngreso')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input formControlName="descripcion"></ion-input>
+        <span *ngIf="historiaForm.get('descripcion')?.hasError('required') && historiaForm.get('descripcion')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Diagnóstico</ion-label>
+        <ion-input formControlName="diagnostico"></ion-input>
+        <span *ngIf="historiaForm.get('diagnostico')?.hasError('required') && historiaForm.get('diagnostico')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Antecedentes</ion-label>
+        <ion-input formControlName="antecedentes"></ion-input>
+      </ion-item>
+      <ion-button [disabled]="historiaForm.invalid" expand="block" type="submit" class="ion-margin-top">Guardar Historia Clínica</ion-button>
+      <ion-button expand="block" type="button" (click)="onCancel()" class="boton-cancelar">Cancelar</ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>

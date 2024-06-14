@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AgregarHistoriaComponent } from './components/agregar-historia/agregar-historia.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,16 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'buscar-historial-clinico',
+    loadChildren: () => import('./buscar-historial-clinico/buscar-historial-clinico.module').then( m => m.BuscarHistorialClinicoPageModule)
+  },
+  {
+    path: 'agregar-historia', 
+    component: AgregarHistoriaComponent
   }
+
 ];
 
 @NgModule({
