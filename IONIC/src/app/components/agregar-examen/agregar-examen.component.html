@@ -1,0 +1,44 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Agregar Examen</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="examenForm">
+      <ion-item>
+        <ion-label position="floating">RUT del paciente</ion-label>
+        <ion-input formControlName="idPaciente"></ion-input>
+        <span *ngIf="examenForm.get('idPaciente')?.hasError('required') && examenForm.get('idPaciente')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+        <span *ngIf="examenForm.get('idPaciente')?.hasError('invalidRUT') && examenForm.get('idPaciente')?.touched">
+          El <strong>RUT</strong> ingresado no es válido
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha</ion-label>
+        <ion-datetime formControlName="fecha" displayFormat="MM/DD/YYYY"></ion-datetime>
+        <span *ngIf="examenForm.get('fecha')?.hasError('required') && examenForm.get('fecha')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Archivo</ion-label>
+        <input class="subirArchivo" type="file" (change)="onFileChange($event)" />
+        <span *ngIf="fileError">{{ fileError }}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">RUT del Funcionario</ion-label>
+        <ion-input formControlName="idFuncionario"></ion-input>
+        <span *ngIf="examenForm.get('idFuncionario')?.hasError('required') && examenForm.get('idFuncionario')?.touched">
+          Este campo es <strong>obligatorio</strong>
+        </span>
+        <span *ngIf="examenForm.get('idFuncionario')?.hasError('invalidRUT') && examenForm.get('idFuncionario')?.touched">
+          El <strong>RUT</strong> ingresado no es válido
+        </span>
+      </ion-item>
+      <ion-button [disabled]="examenForm.invalid || !file" expand="block" type="submit" class="ion-margin-top">Guardar Examen</ion-button>
+      <ion-button expand="block" type="button" (click)="onCancel()" class="boton-cancelar">Cancelar</ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>

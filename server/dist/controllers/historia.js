@@ -27,7 +27,7 @@ const getHistoria = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     else {
         res.status(404).json({
-            msg: `No existe un producto con el id ${idHistoria}`
+            msg: `No existe historia con id ${idHistoria}`
         });
     }
 });
@@ -37,7 +37,7 @@ const deleteHistoria = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const historia = yield historiaClinica_1.default.findByPk(idHistoria);
     if (!historia) {
         res.status(404).json({
-            msg: `No existe un producto con el id ${idHistoria}`
+            msg: `No existe historia id ${idHistoria}`
         });
     }
     else {
@@ -53,14 +53,22 @@ const postHistoria = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         yield historiaClinica_1.default.create(body);
         res.json({
-            msg: '¡El producto fue agregado con éxito!'
+            msg: '¡La historia fue agregada con éxito!'
         });
     }
     catch (error) {
-        console.log(error);
-        res.json({
-            msg: 'Ocurrió un error, comuníquese con soporte'
-        });
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            res.status(400).json({
+                msg: 'El RUT ingresado no existe. Por favor, ingrese un RUT válido.',
+                error
+            });
+        }
+        else {
+            res.status(500).json({
+                msg: 'Error al crear la historia clínica',
+                error
+            });
+        }
     }
 });
 exports.postHistoria = postHistoria;
@@ -77,7 +85,7 @@ const putHistoria = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         else {
             res.status(404).json({
-                msg: `No existe un producto con el id ${idHistoria}`
+                msg: `No existe historia con id ${idHistoria}`
             });
         }
     }

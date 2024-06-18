@@ -1,7 +1,9 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import routesHistorias from '../routes/historias';
+import routesExamenes from '../routes/examen';
 import db from '../db/connection';
+import path from 'path';
 
 class Server{
     private app: Application;
@@ -28,7 +30,8 @@ class Server{
                 msg: 'API FUNCIONANDO'
             })
         });
-        this.app.use('/api/historias', routesHistorias) 
+        this.app.use('/api/historias', routesHistorias);
+        this.app.use('/api/examenes', routesExamenes); 
     }
 
     middlewares(){
@@ -37,6 +40,9 @@ class Server{
 
         //cors
         this.app.use(cors());
+
+        //Directorio público para archivos subidos
+        this.app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
     }
 
     async dbConnect(){

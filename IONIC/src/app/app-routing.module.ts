@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AgregarHistoriaComponent } from './components/agregar-historia/agregar-historia.component';
+import { AgregarExamenComponent } from './components/agregar-examen/agregar-examen.component';
 
 const routes: Routes = [
   {
@@ -10,35 +11,39 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'agendar-hora',
-    loadChildren: () => import('./agendar-hora/agendar-hora.module').then(m => m.AgendarHoraPageModule)
+    loadChildren: () => import('./pages/agendar-hora/agendar-hora.module').then(m => m.AgendarHoraPageModule)
   },
   {
     path: 'buscar-examen',
-    loadChildren: () => import('./buscar-examen/buscar-examen.module').then(m => m.BuscarExamenPageModule)
+    loadChildren: () => import('./pages/buscar-examen/buscar-examen.module').then(m => m.BuscarExamenPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'buscar-historial-clinico',
-    loadChildren: () => import('./buscar-historial-clinico/buscar-historial-clinico.module').then( m => m.BuscarHistorialClinicoPageModule)
+    loadChildren: () => import('./pages/buscar-historial-clinico/buscar-historial-clinico.module').then( m => m.BuscarHistorialClinicoPageModule)
   },
   {
     path: 'agregar-historia', 
     component: AgregarHistoriaComponent
+  },
+  {
+    path: 'agregar-examen',
+    component: AgregarExamenComponent
   }
 
 ];

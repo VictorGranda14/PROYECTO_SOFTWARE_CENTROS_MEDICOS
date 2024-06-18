@@ -15,7 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const historias_1 = __importDefault(require("../routes/historias"));
+const examen_1 = __importDefault(require("../routes/examen"));
 const connection_1 = __importDefault(require("../db/connection"));
+const path_1 = __importDefault(require("path"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -37,12 +39,15 @@ class Server {
             });
         });
         this.app.use('/api/historias', historias_1.default);
+        this.app.use('/api/examenes', examen_1.default);
     }
     middlewares() {
         //parseo
         this.app.use(express_1.default.json());
         //cors
         this.app.use((0, cors_1.default)());
+        //Directorio público para archivos subidos
+        this.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../public/uploads')));
     }
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {

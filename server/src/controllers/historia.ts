@@ -15,7 +15,7 @@ export const getHistoria = async (req: Request, res: Response) => {
         res.json(historia);
     }else{
         res.status(404).json({
-            msg: `No existe un producto con el id ${idHistoria}`
+            msg: `No existe historia con id ${idHistoria}`
         })
     }
 }
@@ -26,7 +26,7 @@ export const deleteHistoria = async (req: Request, res: Response) => {
     
     if(!historia){
         res.status(404).json({
-            msg: `No existe un producto con el id ${idHistoria}`
+            msg: `No existe historia id ${idHistoria}`
         })
     }
     else {
@@ -44,16 +44,23 @@ export const postHistoria = async (req: Request, res: Response) => {
         await historiaClinica.create(body);
 
         res.json({
-            msg: '¡El producto fue agregado con éxito!'
+            msg: '¡La historia fue agregada con éxito!'
         })
-    } catch (error) {
-        console.log(error);
-        res.json({
-            msg: 'Ocurrió un error, comuníquese con soporte'
-        })
+    } catch (error:any) {
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+          res.status(400).json({
+            msg: 'El RUT ingresado no existe. Por favor, ingrese un RUT válido.',
+            error
+          });
+        } else {
+          res.status(500).json({
+            msg: 'Error al crear la historia clínica',
+            error
+          });
+        }
     }
     
-}
+};
 
 export const putHistoria = async (req: Request, res: Response) => {
     const { body } = req;
@@ -68,7 +75,7 @@ export const putHistoria = async (req: Request, res: Response) => {
             })
         } else {
             res.status(404).json({
-                msg: `No existe un producto con el id ${idHistoria}`
+                msg: `No existe historia con id ${idHistoria}`
             })
         }
     } catch (error) {
