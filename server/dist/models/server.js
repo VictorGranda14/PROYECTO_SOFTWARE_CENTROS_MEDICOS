@@ -15,7 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const historias_1 = __importDefault(require("../routes/historias"));
-const connection_1 = __importDefault(require("../db/connection"));
+const user_1 = __importDefault(require("../routes/user"));
+const products_1 = __importDefault(require("../routes/products"));
+const product_1 = require("./product");
+const user_2 = require("./user");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -37,6 +40,8 @@ class Server {
             });
         });
         this.app.use('/api/historias', historias_1.default);
+        this.app.use('/api/products', products_1.default);
+        this.app.use('/api/users', user_1.default);
     }
     middlewares() {
         //parseo
@@ -47,8 +52,8 @@ class Server {
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield connection_1.default.authenticate();
-                console.log('Base de datos conectada');
+                yield product_1.Product.sync();
+                yield user_2.User.sync();
             }
             catch (error) {
                 console.log(error);
