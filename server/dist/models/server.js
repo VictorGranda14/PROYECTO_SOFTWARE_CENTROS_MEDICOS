@@ -19,6 +19,8 @@ const user_1 = __importDefault(require("../routes/user"));
 const products_1 = __importDefault(require("../routes/products"));
 const product_1 = require("./product");
 const user_2 = require("./user");
+const examen_1 = __importDefault(require("../routes/examen"));
+const path_1 = __importDefault(require("path"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -42,12 +44,16 @@ class Server {
         this.app.use('/api/historias', historias_1.default);
         this.app.use('/api/products', products_1.default);
         this.app.use('/api/users', user_1.default);
+        this.app.use('/api/historias', historias_1.default);
+        this.app.use('/api/examenes', examen_1.default);
     }
     middlewares() {
         //parseo
         this.app.use(express_1.default.json());
         //cors
         this.app.use((0, cors_1.default)());
+        //Directorio público para archivos subidos
+        this.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../public/uploads')));
     }
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {

@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 //Componentes
 import { AgregarHistoriaComponent } from './components/agregar-historia/agregar-historia.component';
+import { AgregarExamenComponent } from './components/agregar-examen/agregar-examen.component';
 
 const routes: Routes = [
   {
@@ -17,16 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
-  },
-  {
-    path: 'agendar-hora',
-    loadChildren: () => import('./pages/agendar-hora/agendar-hora.module').then(m => m.AgendarHoraPageModule)
-  },
-  {
     path: 'buscar-examen',
     loadChildren: () => import('./pages/buscar-examen/buscar-examen.module').then(m => m.BuscarExamenPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'buscar-historial-clinico',
@@ -40,6 +37,10 @@ const routes: Routes = [
     path: 'home-admin',
     loadChildren: () => import('./pages/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
   },
+  {
+    path: 'agregar-examen',
+    component: AgregarExamenComponent
+  }
 
 ];
 

@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ListadoExamenesComponent } from './listado-examenes/listado-examenes.component';
 import { AgregarHistoriaComponent } from './agregar-historia/agregar-historia.component';
+import { AgregarExamenComponent } from './agregar-examen/agregar-examen.component';
 
 @NgModule({
-  declarations: [ListadoExamenesComponent, AgregarHistoriaComponent],
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
-  exports: [ListadoExamenesComponent, AgregarHistoriaComponent]
+  declarations: [AgregarHistoriaComponent, AgregarExamenComponent],
+  imports: [
+    CommonModule, IonicModule, ReactiveFormsModule],
+  exports: [AgregarHistoriaComponent, AgregarExamenComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentsModule {}

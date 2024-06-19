@@ -1,6 +1,5 @@
 .main-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  width: 100%;
   gap: 1rem;
 }
 
@@ -51,5 +50,3 @@ ion-grid {
   height: 20px;
   margin-right: 0.5rem;
 }
-
-  

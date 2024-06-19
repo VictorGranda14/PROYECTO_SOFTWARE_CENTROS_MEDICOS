@@ -6,6 +6,8 @@ import routesProduct from '../routes/products';
 import db from '../db/connection';
 import { Product } from './product';
 import { User } from './user';
+import routesExamenes from '../routes/examen';
+import path from 'path';
 
 class Server{
     private app: Application;
@@ -35,6 +37,8 @@ class Server{
         this.app.use('/api/historias', routesHistorias) 
         this.app.use('/api/products', routesProduct) 
         this.app.use('/api/users', routesUser);
+        this.app.use('/api/historias', routesHistorias);
+        this.app.use('/api/examenes', routesExamenes); 
     }
 
     middlewares(){
@@ -42,6 +46,9 @@ class Server{
         this.app.use(express.json());
         //cors
         this.app.use(cors());
+
+        //Directorio público para archivos subidos
+        this.app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
     }
 
     async dbConnect(){

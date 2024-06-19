@@ -1,62 +1,85 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Buscar Historial Clínico</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToPage('/home')">
+        <ion-icon name="home"></ion-icon>
+        Logo
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Usuario Paciente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToPage('/login')">
+        <ion-icon name="log-in"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="getListHistorias()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input [(ngModel)]="nombrePaciente" name="nombrePaciente"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">RUT</ion-label>
-      <ion-input [(ngModel)]="rutPaciente" name="rutPaciente"></ion-input>
-    </ion-item>
-    <ion-button expand="block" type="submit" class="ion-margin-top">Buscar</ion-button>
-  </form>
-  
-  <ng-container *ngIf="historias.length > 0; else noHistorias">
-    <ion-card class="ion-margin-top">
-      <ion-card-header>
-        <ion-card-title>Historias Clínicas</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="2"><strong>ID</strong></ion-col>
-            <ion-col size="2"><strong>Nombre</strong></ion-col>
-            <ion-col size="2"><strong>Fecha</strong></ion-col>
-            <ion-col size="2"><strong>Descripción</strong></ion-col>
-            <ion-col size="2"><strong>Diagnóstico</strong></ion-col>
-            <ion-col size="2"><strong>Antecedentes</strong></ion-col>
-          </ion-row>
-          <ion-row *ngFor="let historia of historias">
-            <ion-col size="2">{{ historia.idHistoria }}</ion-col>
-            <ion-col size="2">{{ historia.nombrePaciente }}</ion-col>
-            <ion-col size="2">{{ historia.fechaIngreso | date }}</ion-col>
-            <ion-col size="2">{{ historia.descripcion }}</ion-col>
-            <ion-col size="2">{{ historia.diagnostico }}</ion-col>
-            <ion-col size="2">{{ historia.antecedentes }}</ion-col>
-            <ion-col>
-              <ion-button (click)="deleteHistoriaClinica(historia.idHistoria!)" type="ion-button" size = "small" routerLink = "/buscar-historial-clinico">Borrar</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-    <ion-button expand="block" type="submit" class="ion-margin-top" routerLink = "/agregar-historia">Añadir historia clínica</ion-button>
-  </ng-container>
-  <ng-template #noHistorias>
-    <ion-card class="ion-margin-top">
-      <ion-card-header>
-        <ion-card-title>Sin resultados</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        No se encontraron historias clínicas que coincidan con los criterios de búsqueda.
-      </ion-card-content>
-    </ion-card>
-    <ion-button expand="block" type="submit" class="ion-margin-top" routerLink = "/agregar-historia">Añadir historia clínica</ion-button>
-  </ng-template>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Buscar Historia Clínica</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="getListHistorias()">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="nombrePaciente" name="nombrePaciente"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">RUT</ion-label>
+          <ion-input [(ngModel)]="rutPaciente" name="rutPaciente"></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" class="ion-margin-top">Buscar</ion-button>
+      </form>
+
+      <ng-container *ngIf="showResults">
+        <ng-container *ngIf="historias.length > 0; else noHistorias">
+          <ion-card class="ion-margin-top">
+            <ion-card-header>
+              <ion-card-title>Historias Clínicas</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="2"><strong>ID</strong></ion-col>
+                  <ion-col size="2"><strong>Nombre</strong></ion-col>
+                  <ion-col size="2"><strong>Fecha</strong></ion-col>
+                  <ion-col size="2"><strong>Descripción</strong></ion-col>
+                  <ion-col size="2"><strong>Diagnóstico</strong></ion-col>
+                  <ion-col size="2"><strong>Antecedentes</strong></ion-col>
+                  <ion-col size="2"><strong>Acciones</strong></ion-col>
+                </ion-row>
+                <ion-row *ngFor="let historia of historias">
+                  <ion-col size="2">{{ historia.idHistoria }}</ion-col>
+                  <ion-col size="2">{{ historia.nombrePaciente }}</ion-col>
+                  <ion-col size="2">{{ historia.fechaIngreso | date }}</ion-col>
+                  <ion-col size="2">{{ historia.descripcion }}</ion-col>
+                  <ion-col size="2">{{ historia.diagnostico }}</ion-col>
+                  <ion-col size="2">{{ historia.antecedentes }}</ion-col>
+                  <ion-col>
+                    <ion-button (click)="deleteHistoriaClinica(historia.idHistoria!)" type="button" size="small">Borrar</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #noHistorias>
+        <ion-card class="ion-margin-top">
+          <ion-card-header>
+            <ion-card-title>Sin resultados</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            No se encontraron historias clínicas que coincidan con los criterios de búsqueda.
+          </ion-card-content>
+        </ion-card>
+      </ng-template>
+
+      <ion-button expand="block" class="ion-margin-top" routerLink="/agregar-historia">Añadir historia clínica</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

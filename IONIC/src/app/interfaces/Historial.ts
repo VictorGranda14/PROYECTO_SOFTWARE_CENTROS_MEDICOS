@@ -1,5 +1,5 @@
 export interface Historial {
-    idHistoria: number;
+    idHistoria?: number;
     nombrePaciente: string;
     fechaIngreso: Date;
     descripcion: string;

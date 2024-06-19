@@ -25,6 +25,6 @@ export class HistoriaClinicaService {
   }
 
   saveHistoria(historia: Historial): Observable <void>{
-    return this.http.post <void> (this.myAppUrl+this.myApiUrl, historia)
+    return this.http.post<void> (this.myAppUrl+this.myApiUrl, historia)
   }
 }
