@@ -22,10 +22,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
-    path: 'agendar-hora',
-    loadChildren: () => import('./pages/agendar-hora/agendar-hora.module').then(m => m.AgendarHoraPageModule)
-  },
-  {
     path: 'buscar-examen',
     loadChildren: () => import('./pages/buscar-examen/buscar-examen.module').then(m => m.BuscarExamenPageModule)
   },

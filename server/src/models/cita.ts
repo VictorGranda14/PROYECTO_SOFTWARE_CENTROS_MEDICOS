@@ -1,15 +1,18 @@
 import { DataTypes } from 'sequelize'
 import db from '../db/connection';
 
-const examen = db.define('examen', {
-    idExamen: {
+const cita = db.define('cita', {
+    idCita: {
         type: DataTypes.INTEGER,
         primaryKey: true
+    },
+    hora:{
+        type:DataTypes.TIME
     },
     fecha: {
         type: DataTypes.DATE
     },
-    rutaArchivo: {
+    motivo: {
         type: DataTypes.STRING
     },
     idPaciente:{
@@ -28,4 +31,4 @@ const examen = db.define('examen', {
     }
 );
 
-export default examen;
+export default cita;
