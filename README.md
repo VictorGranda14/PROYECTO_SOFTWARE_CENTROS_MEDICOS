@@ -5,7 +5,7 @@ Repositorio que contiene un prototipo funcional de un software para ayudar a la 
 
 1.-Instalar todas las dependencias del proyecto con "npm install" en el directorio del proyecto.
 
-2.-Instalar Node.js.
+2.-Instalar Node.js desde su sitio oficial en la web.
 
 3.-Para compilar el backend, se debe ingresar a la carpeta /server ("cd server" desde el directiorio principal), instalar las dependencias en caso de ser necesario con npm install, y luego ingresar el comando: "npx nodemon dist/index.js"
 
