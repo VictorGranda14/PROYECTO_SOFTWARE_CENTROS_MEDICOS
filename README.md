@@ -12,10 +12,12 @@ Repositorio que contiene un prototipo funcional de un software para ayudar a la 
 4.-Para compilar la aplicación, se abre un nuevo terminal y se ingresa a la carpeta /IONIC ("cd ionic" desde el directiorio principal) y se utiliza el comando "ionic serve". (esto debería ejecutar la aplicación en su navegador por defecto)
 
 * Credenciales de paciente para pruebas:
+        
         email: victor.granda@example.com 
         password: paciente1
 
 * Credenciales de administrador para pruebas:
+        
         email: admin@example.com   
         password: admin1
 
@@ -23,15 +25,17 @@ Repositorio que contiene un prototipo funcional de un software para ayudar a la 
 
 * Se debe tener instalado mysql workbench
 
-2.-Abrir MySQL Workbench.
+1.-Abrir MySQL Workbench.
 
-3.-Se debe acceder a su servidor MySQL. (Servidor Local por defecto)
+2.-Se debe acceder a su servidor MySQL. (Servidor Local por defecto)
+
+3.-Crear un nuevo schema llamado "bd_centros_medicos".
 
 4.-Importar el Archivo .sql adjunto:
 
     - Se debe ir a Server > Data Import en el menú superior.
     - Selecciona la opción "Import from Self-Contained File" y se elige el archivo .sql que fue adjunto.
-    - Se elige la base de datos destino donde se importarán los datos.
+    - Se elige la base de datos "bd_centros_medicos".
     - Click en Start Import para comenzar el proceso de importación.
 
 5.-Luego debemos dirigirnos al proyecto e ingresamos a la carpeta /server -> /src -> /db
