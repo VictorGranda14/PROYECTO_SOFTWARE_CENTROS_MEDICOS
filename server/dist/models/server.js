@@ -16,11 +16,11 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const historias_1 = __importDefault(require("../routes/historias"));
 const user_1 = __importDefault(require("../routes/user"));
-const products_1 = __importDefault(require("../routes/products"));
-const product_1 = require("./product");
-const user_2 = require("./user");
+const cita_1 = __importDefault(require("../routes/cita"));
+const paciente_1 = require("./paciente");
 const examen_1 = __importDefault(require("../routes/examen"));
 const path_1 = __importDefault(require("path"));
+const funcionario_1 = require("./funcionario");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -42,10 +42,9 @@ class Server {
             });
         });
         this.app.use('/api/historias', historias_1.default);
-        this.app.use('/api/products', products_1.default);
         this.app.use('/api/users', user_1.default);
-        this.app.use('/api/historias', historias_1.default);
         this.app.use('/api/examenes', examen_1.default);
+        this.app.use('/api/citas', cita_1.default);
     }
     middlewares() {
         //parseo
@@ -58,8 +57,8 @@ class Server {
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield product_1.Product.sync();
-                yield user_2.User.sync();
+                yield paciente_1.Paciente.sync();
+                yield funcionario_1.Funcionario.sync();
             }
             catch (error) {
                 console.log(error);

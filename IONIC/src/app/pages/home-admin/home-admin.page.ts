@@ -1,34 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface ReservedHour {
-  day: string;
-  time: string;
-}
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-admin',
   templateUrl: './home-admin.page.html',
-  styleUrls: ['./home-admin.page.scss'],
+  styleUrls: ['./home-admin.page.scss']
 })
 export class HomeAdminPage implements OnInit {
 
-  reservedHours: ReservedHour[] = [
-    { day: 'Miércoles 10', time: '3:45' },
-    { day: 'Jueves 23', time: '1:30' },
-    { day: 'Lunes 30', time: '4:30' }
-  ];
+  token: string | null = localStorage.getItem('token');
+  decodedToken: any;
+  nombre: string = '';
+  apellido: string = '';
 
-  constructor(private router: Router) { }
-
-  ngOnInit() { }
-
-  cancelReservation(index: number) {
-    this.reservedHours.splice(index, 1);
+  constructor(private router: Router) {
+    if (this.token) {
+      this.decodedToken = jwtDecode(this.token);
+      this.nombre = this.decodedToken.nombre;
+      this.apellido = this.decodedToken.apellido;
+    } 
   }
 
+  ngOnInit() {}
+
   navigateToPage(page: string) {
-    localStorage.removeItem('token');
     this.router.navigate([page]);
   }
 }

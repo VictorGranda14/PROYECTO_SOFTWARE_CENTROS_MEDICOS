@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToPage('home')">  <!-- Modificado para usar 'home' -->
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ userName }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToPage('/login')">
+        <ion-icon name="log-in"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

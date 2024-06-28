@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { BuscarHistorialClinicoPageRoutingModule } from './buscar-historial-clinico-routing.module';
 
 import { BuscarHistorialClinicoPage } from './buscar-historial-clinico.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { BuscarHistorialClinicoPage } from './buscar-historial-clinico.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    BuscarHistorialClinicoPageRoutingModule
+    BuscarHistorialClinicoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [BuscarHistorialClinicoPage]
 })

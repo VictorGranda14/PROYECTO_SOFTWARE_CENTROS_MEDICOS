@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../interfaces/user';
+import { Paciente } from '../interfaces/Paciente';
+import { User } from '../interfaces/User';
+import { Funcionario } from '../interfaces/Funcionario';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,15 @@ export class UserService {
     this.myApiUrl = 'api/users/'
   }
 
-  register(user: User): Observable<any>{
+  register(user: Paciente): Observable<any>{
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user)
   }
 
-  login(user: User): Observable<{token: string}>{
-    return this.http.post<{token: string}>(`${this.myAppUrl}${this.myApiUrl}login`, user)
+  login(user: User): Observable<{token: string, tipo: number}>{
+    return this.http.post<{token: string, tipo: number}>(`${this.myAppUrl}${this.myApiUrl}login`, user)
   } 
+
+  getFuncionarios(): Observable<Funcionario[]>{
+    return this.http.get<Funcionario[]>(this.myAppUrl+this.myApiUrl);
+  }
 }

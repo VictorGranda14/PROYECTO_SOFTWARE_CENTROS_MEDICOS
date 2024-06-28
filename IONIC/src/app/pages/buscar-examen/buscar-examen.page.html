@@ -1,19 +1,4 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button (click)="navigateToPage('/home')">
-        <ion-icon name="home"></ion-icon>
-        Logo
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Usuario Paciente</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="navigateToPage('/login')">
-        <ion-icon name="log-in"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header [homeRoute]="'/home-admin'"></app-header>
 
 <ion-content class="ion-padding">
   <ion-card>
@@ -68,6 +53,7 @@
           </ion-card-content>
         </ion-card>
       </ng-template>
+      <ion-button expand="block" class="ion-margin-top" routerLink="/agregar-examen">Añadir examen</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -2,12 +2,11 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import routesHistorias from '../routes/historias';
 import routesUser from '../routes/user';
-import routesProduct from '../routes/products';
-import db from '../db/connection';
-import { Product } from './product';
-import { User } from './user';
+import routesCitas from '../routes/cita';
+import { Paciente } from './paciente';
 import routesExamenes from '../routes/examen';
 import path from 'path';
+import { Funcionario } from './funcionario';
 
 class Server{
     private app: Application;
@@ -35,10 +34,9 @@ class Server{
             })
         });
         this.app.use('/api/historias', routesHistorias) 
-        this.app.use('/api/products', routesProduct) 
-        this.app.use('/api/users', routesUser);
-        this.app.use('/api/historias', routesHistorias);
-        this.app.use('/api/examenes', routesExamenes); 
+        this.app.use('/api/users', routesUser)
+        this.app.use('/api/examenes', routesExamenes)
+        this.app.use('/api/citas', routesCitas) 
     }
 
     middlewares(){
@@ -53,9 +51,8 @@ class Server{
 
     async dbConnect(){
         try{
-            await Product.sync()
-            await User.sync()
-            
+            await Paciente.sync()
+            await Funcionario.sync()
         }catch(error){
             console.log(error);
             console.log('Error al conectarse a la base de datos');

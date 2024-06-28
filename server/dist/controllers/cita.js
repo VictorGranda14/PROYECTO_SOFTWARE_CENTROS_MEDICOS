@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putCita = exports.postCita = exports.deleteCita = exports.getCita = exports.getCitas = void 0;
+exports.obtenerCitasPorPaciente = exports.obtenerCitasPorFuncionario = exports.postCita = exports.cancelarCita = exports.getCita = exports.getCitas = void 0;
 const cita_1 = __importDefault(require("../models/cita"));
 const getCitas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listCitas = yield cita_1.default.findAll();
@@ -32,22 +32,23 @@ const getCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getCita = getCita;
-const deleteCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const cancelarCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { idCita } = req.params;
-    const citaBuscada = yield cita_1.default.findByPk(idCita);
-    if (!citaBuscada) {
-        res.status(404).json({
-            msg: `No existe cita con id ${idCita}`
-        });
+    try {
+        const cita = yield cita_1.default.findByPk(idCita);
+        if (cita) {
+            yield cita_1.default.destroy({ where: { idCita } });
+            res.json({ msg: 'Cita cancelada con éxito' });
+        }
+        else {
+            res.status(404).json({ msg: `No existe cita con id ${idCita}` });
+        }
     }
-    else {
-        yield citaBuscada.destroy();
-        res.json({
-            msg: 'La cita fue eliminada con éxito'
-        });
+    catch (error) {
+        res.status(500).json({ msg: 'Error al cancelar la cita', error });
     }
 });
-exports.deleteCita = deleteCita;
+exports.cancelarCita = cancelarCita;
 const postCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
@@ -72,28 +73,40 @@ const postCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.postCita = postCita;
-const putCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { body } = req;
-    const { idCita } = req.params;
-    const citaBuscada = yield cita_1.default.findByPk(idCita);
+const obtenerCitasPorFuncionario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { idFuncionarioSalud } = req.params;
     try {
-        if (citaBuscada) {
-            yield citaBuscada.update(body);
-            res.json({
-                msg: '¡La cita fue actualizada con éxito!'
-            });
+        const citas = yield cita_1.default.findAll({ where: { idFuncionarioSalud: idFuncionarioSalud } });
+        if (citas.length > 0) {
+            res.json(citas);
+        }
+        else {
+            res.status(404).json({ msg: `No existen citas para el funcionario con rut ${idFuncionarioSalud}` });
+        }
+    }
+    catch (error) {
+        res.status(500).json({ msg: 'Error al obtener las citas', error });
+    }
+});
+exports.obtenerCitasPorFuncionario = obtenerCitasPorFuncionario;
+const obtenerCitasPorPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { idPaciente } = req.params;
+    try {
+        const citas = yield cita_1.default.findAll({ where: { idPaciente: idPaciente } });
+        if (citas.length > 0) {
+            res.json(citas);
         }
         else {
             res.status(404).json({
-                msg: `No existe cita con id ${idCita}`
+                msg: `No existe cita con id de paciente ${idPaciente}`
             });
         }
     }
     catch (error) {
-        console.log(error);
-        res.json({
-            msg: 'Ocurrió un error, comuníquese con soporte'
+        res.status(500).json({
+            msg: 'Error al buscar citas',
+            error
         });
     }
 });
-exports.putCita = putCita;
+exports.obtenerCitasPorPaciente = obtenerCitasPorPaciente;

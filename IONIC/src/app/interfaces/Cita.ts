@@ -6,5 +6,5 @@ export interface Cita {
     fecha: Date;
     motivo: string;
     idPaciente: string;
-    idFuncionario: string;
+    idFuncionarioSalud: string;
   }

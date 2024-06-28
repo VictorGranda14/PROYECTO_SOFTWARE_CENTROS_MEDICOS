@@ -1,15 +1,14 @@
 import { Request , Response} from "express"
-import cita from "../models/cita";
+import  Cita  from "../models/cita";
 
 export const getCitas= async (req: Request, res: Response) => {
-    const listCitas = await cita.findAll();
-    
+    const listCitas = await Cita.findAll();
     res.json(listCitas);
 }
 
 export const getCita = async (req: Request, res: Response) => {
     const { idCita } = req.params;
-    const citaBuscada = await cita.findByPk(idCita)
+    const citaBuscada = await Cita.findByPk(idCita)
 
     if (citaBuscada){
         res.json(citaBuscada);
@@ -20,29 +19,26 @@ export const getCita = async (req: Request, res: Response) => {
     }
 }
 
-export const deleteCita = async (req: Request, res: Response) => {
+export const cancelarCita = async (req: Request, res: Response) => {
     const { idCita } = req.params;
-    const citaBuscada = await cita.findByPk(idCita)
-    
-    if(!citaBuscada){
-        res.status(404).json({
-            msg: `No existe cita con id ${idCita}`
-        })
+    try {
+      const cita = await Cita.findByPk(idCita);
+      if (cita) {
+        await Cita.destroy({ where: { idCita } });
+        res.json({ msg: 'Cita cancelada con éxito' });
+      } else {
+        res.status(404).json({ msg: `No existe cita con id ${idCita}` });
+      }
+    } catch (error) {
+      res.status(500).json({ msg: 'Error al cancelar la cita', error });
     }
-    else {
-        await citaBuscada.destroy();
-        res.json({
-            msg: 'La cita fue eliminada con éxito'
-        })
-    }
-}
-
+  };
+  
 export const postCita= async (req: Request, res: Response) => {
     const { body } = req;
 
     try {
-        await cita.create(body);
-
+        await Cita.create(body);
         res.json({
             msg: '¡La cita fue agregada con éxito!'
         })
@@ -62,27 +58,36 @@ export const postCita= async (req: Request, res: Response) => {
     
 };
 
-export const putCita = async (req: Request, res: Response) => {
-    const { body } = req;
-    const { idCita } = req.params;
-    const citaBuscada = await cita.findByPk(idCita);
-
-    try{
-        if (citaBuscada){
-            await citaBuscada.update(body);
-            res.json({
-                msg: '¡La cita fue actualizada con éxito!'
-            })
-        } else {
-            res.status(404).json({
-                msg: `No existe cita con id ${idCita}`
-            })
-        }
-    } catch (error) {
-        console.log(error);
-        res.json({
-            msg: 'Ocurrió un error, comuníquese con soporte'
-        })
+export const obtenerCitasPorFuncionario = async (req: Request, res: Response) => {
+  const { idFuncionarioSalud } = req.params;
+  try {
+    const citas = await Cita.findAll({ where: { idFuncionarioSalud: idFuncionarioSalud } });
+    if (citas.length > 0) {
+      res.json(citas);
+    } else {
+      res.status(404).json({ msg: `No existen citas para el funcionario con rut ${idFuncionarioSalud}` });
     }
-    
-}
+  } catch (error) {
+    res.status(500).json({ msg: 'Error al obtener las citas', error });
+  }
+};
+
+export const obtenerCitasPorPaciente = async (req: Request, res: Response) => {
+  const { idPaciente } = req.params;
+  try {
+      const citas = await Cita.findAll({ where: { idPaciente: idPaciente } });
+      if (citas.length > 0) {
+          res.json(citas);
+      } else {
+          res.status(404).json({
+              msg: `No existe cita con id de paciente ${idPaciente}`
+          });
+      }
+  } catch (error) {
+      res.status(500).json({
+          msg: 'Error al buscar citas',
+          error
+      });
+  }
+};
+

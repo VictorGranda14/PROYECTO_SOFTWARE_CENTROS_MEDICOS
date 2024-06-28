@@ -7,6 +7,8 @@
 .sidebar {
   background: #f4f4f4;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .content {
@@ -19,9 +21,26 @@ ion-card {
   width: 100%;
 }
 
-ion-button {
+.home-button {
   width: 100%;
   font-size: 1.2rem;
   padding: 1.5rem;
   text-align: center;
 }
+
+.responsive-cancel-button {
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  --background: transparent;
+  --border-color: var(--ion-color-danger);
+  --color: var(--ion-color-danger);
+  margin-top: -10px; 
+  margin-left: -5px; 
+}
+
+.responsive-cancel-button:hover {
+  --background: var(--ion-color-danger);
+  --color: #fff;
+}
+

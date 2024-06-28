@@ -18,7 +18,7 @@ const cita = db.define('cita', {
     idPaciente:{
         type: DataTypes.STRING
     },
-    idFuncionario: {
+    idFuncionarioSalud: {
         type: DataTypes.STRING
     }},
     {

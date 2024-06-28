@@ -15,7 +15,8 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    BuscarExamenPageRoutingModule
+    BuscarExamenPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [BuscarExamenPage]
 })

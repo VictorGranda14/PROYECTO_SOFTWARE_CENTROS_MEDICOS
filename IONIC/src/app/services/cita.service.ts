@@ -16,15 +16,16 @@ export class CitaService {
     this.myApiUrl = 'api/citas/'
   }
 
-  getCitas(): Observable<Cita[]>{
-    return this.http.get<Cita[]>(this.myAppUrl+this.myApiUrl);
-  }
-
-  deleteCita(idCita: number): Observable<void>{
-    return this.http.delete <void> (`${this.myAppUrl}${this.myApiUrl}${idCita}`)
-  }
-
-  saveCita(cita: Cita): Observable <void>{
+  guardarCita(cita: Cita): Observable <void>{
     return this.http.post<void> (this.myAppUrl+this.myApiUrl, cita)
+  }
+  obtenerCitasPorPaciente(idPaciente: string): Observable<Cita[]> {
+    return this.http.get<Cita[]>(`${this.myAppUrl}${this.myApiUrl}paciente/${idPaciente}`);
+  }
+  cancelarCita(idCita: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${idCita}`);
+  }
+  obtenerCitasPorFuncionario(idFuncionarioSalud: string): Observable<Cita[]> {
+    return this.http.get<Cita[]>(`${this.myAppUrl}${this.myApiUrl}funcionario/${idFuncionarioSalud}`);
   }
 }

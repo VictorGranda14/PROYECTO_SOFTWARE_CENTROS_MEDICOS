@@ -23,35 +23,35 @@
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombrePaciente" required></ion-input>
+          <ion-input formControlName="nombre" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Apellido</ion-label>
-          <ion-input formControlName="apellidoPaciente" required></ion-input>
+          <ion-label position="floating">Apellido Paterno</ion-label>
+          <ion-input formControlName="primerApellido" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido Materno</ion-label>
+          <ion-input formControlName="segundoApellido" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">RUT</ion-label>
           <ion-input formControlName="rut" required></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label position="floating">Fecha de Nacimiento</ion-label>
+          <ion-input formControlName="fechaNacimiento" required></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating">Email</ion-label>
           <ion-input formControlName="email" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Seleccione su región</ion-label>
-          <ion-select formControlName="region" required>
-            <ion-select-option value="valparaiso">Valparaíso</ion-select-option>
-          </ion-select>
+          <ion-label position="floating">Dirección</ion-label>
+          <ion-input formControlName="direccion" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Seleccione su comuna</ion-label>
-          <ion-select formControlName="comuna" required>
-            <ion-select-option value="vina_del_mar">Viña del Mar</ion-select-option>
-            <ion-select-option value="concon">Concon</ion-select-option>
-            <ion-select-option value="valparaiso">Valparaíso</ion-select-option>
-            <ion-select-option value="quillota">Quillota</ion-select-option>
-            <ion-select-option value="otra">Otra</ion-select-option>
-          </ion-select>
+          <ion-label position="floating">Número de teléfono</ion-label>
+          <ion-input formControlName="numTelefono" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>

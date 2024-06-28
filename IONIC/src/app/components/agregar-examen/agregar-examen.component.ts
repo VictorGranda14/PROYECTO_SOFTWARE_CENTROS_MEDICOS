@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Examen } from 'src/app/interfaces/Examen';
 import { ExamenService } from 'src/app/services/examen.service';
 
 @Component({
@@ -10,6 +9,7 @@ import { ExamenService } from 'src/app/services/examen.service';
   templateUrl: './agregar-examen.component.html',
   styleUrls: ['./agregar-examen.component.scss'],
 })
+
 export class AgregarExamenComponent implements OnInit {
   examenForm: FormGroup;
   file: File | null = null;
@@ -73,7 +73,7 @@ export class AgregarExamenComponent implements OnInit {
 
       this._examenService.saveExamen(formData).subscribe(() => {
         this.toastr.success('El examen fue registrado con éxito', 'Examen registrado');
-        this.router.navigate(['/buscar-historial-clinico']);
+        this.router.navigate(['/buscar-examen']);
       }, error => {
         console.error('Error al agregar examen:', error);
         this.toastr.error('Error al agregar examen. El RUT del paciente y/o funcionario ingresado no está registrado, vuelva a intentarlo.', 'Error');
@@ -82,8 +82,7 @@ export class AgregarExamenComponent implements OnInit {
       console.log('Formulario no válido');
     }
   }
-
   onCancel() {
-    this.router.navigate(['/buscar-historial-clinico']);
+    this.router.navigate(['/buscar-examen']);
   }
 }

@@ -1,29 +1,29 @@
 import { DataTypes } from 'sequelize'
 import db from '../db/connection';
 
-export const User = db.define('pacientes', {
-    idPaciente: {
+export const Funcionario = db.define('funcionariosalud', {
+    idFuncionarioSalud: {
         type: DataTypes.STRING,
         primaryKey: true,
     },
-    nombrePaciente: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    apellidoPaciente: {
+    primerApellido: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    segundoApellido: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    region: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    comuna: {
+    especialidad: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -31,10 +31,9 @@ export const User = db.define('pacientes', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    role: {
-        type: DataTypes.STRING, //'admin' o 'user'
+    numTelefono: {
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'user'
     }
 },  {
         freezeTableName: true,

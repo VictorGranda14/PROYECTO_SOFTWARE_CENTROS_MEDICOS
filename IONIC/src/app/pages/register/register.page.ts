@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../interfaces/user';
+import { Paciente } from '../../interfaces/Paciente';
 import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -21,13 +21,16 @@ export class RegisterPage {
     private toastr: ToastrService,
     private _UserService: UserService
   ) {
+
     this.registerForm = this.fb.group({
-      nombrePaciente: ['', Validators.required],
-      apellidoPaciente: ['', Validators.required],
+      nombre: ['', Validators.required],
+      primerApellido: ['', Validators.required],
+      segundoApellido: ['', Validators.required],
       rut: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      region: ['', Validators.required],
-      comuna: ['', Validators.required],
+      direccion: ['', Validators.required],
+      numTelefono: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6), this.validarContraseña]],
       passwordVerify: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue]
@@ -36,31 +39,35 @@ export class RegisterPage {
 
   onSubmit() {
     const { rut, password, passwordVerify } = this.registerForm.value;
-    if (this.validarRUT(rut)) {
+    const rutLimpio = rut.replace(/\./g, '');
+
+    if (this.validarRUT(rutLimpio)) {
       if (this.registerForm.controls["password"].status !== "INVALID") {
         if (password === passwordVerify) {
           this.mensajeError = '';
-          const user: User = {
-            nombrePaciente: this.registerForm.value.nombrePaciente,
-            apellidoPaciente: this.registerForm.value.apellidoPaciente,
-            idPaciente: this.registerForm.value.rut,
+          const paciente: Paciente = {
+            nombre: this.registerForm.value.nombre,
+            primerApellido: this.registerForm.value.primerApellido,
+            segundoApellido: this.registerForm.value.primerApellido,
+            fechaNacimiento: this.registerForm.value.fechaNacimiento,
+            idPaciente: rutLimpio,
             email: this.registerForm.value.email,
-            region: this.registerForm.value.region,
-            comuna: this.registerForm.value.comuna,
+            direccion: this.registerForm.value.direccion,
+            numTelefono: this.registerForm.value.numTelefono,
             password: this.registerForm.value.password,
-            role: "user"
           };
 
-          this._UserService.register(user).subscribe({
+          this._UserService.register(paciente).subscribe({
             next: (v) => {
               this.toastr.success('Usuario registrado con éxito');
               this.router.navigate(['/login']);
             },
             error: (e: HttpErrorResponse) => {
-              this.mensajeError = e.error.msg || 'Credenciales inválidas';  // Actualizar msjError
+              this.mensajeError = e.error.msg || 'Credenciales inválidas';
               this.toastr.error(this.mensajeError);
             }
           });
+
         } else {
           this.toastr.error('La contraseña no coincide');
           this.registerForm.get('passwordVerify')!.setErrors({ mismatch: true });
@@ -79,7 +86,7 @@ export class RegisterPage {
     if (rut.includes('-')) {
       const partes = rut.split('-');
       if (partes.length === 2) {
-        const cuerpo = partes[0].replace(/\./g, '');
+        const cuerpo = partes[0];
         const cod = partes[1];
         let suma = 0;
         let multiplo = 2;

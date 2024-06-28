@@ -4,6 +4,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 //Componentes
 import { AgregarHistoriaComponent } from './components/agregar-historia/agregar-historia.component';
 import { AgregarExamenComponent } from './components/agregar-examen/agregar-examen.component';
+import { VerExamenComponent } from './components/ver-examen/ver-examen.component';
+import { AgendarCitaComponent } from './components/agendar-cita/agendar-cita.component';
+import { VerCitasFuncionarioComponent } from './components/ver-citas-funcionario/ver-citas-funcionario.component';
 
 const routes: Routes = [
   {
@@ -38,10 +41,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
   },
   {
-    path: 'agregar-examen',
-    component: AgregarExamenComponent
+    path: 'agregar-examen', component: AgregarExamenComponent
+  },
+  {
+    path: 'ver-examen', component: VerExamenComponent
+  },
+  {
+    path: 'agendar-cita', component: AgendarCitaComponent
+  },
+  {
+    path: 'ver-citas-funcionario', component: VerCitasFuncionarioComponent
   }
-
 ];
 
 @NgModule({

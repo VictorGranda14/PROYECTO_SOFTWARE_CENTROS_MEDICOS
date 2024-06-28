@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../interfaces/user';
+import { User } from '../../interfaces/User';
 import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
@@ -21,7 +21,7 @@ export class LoginPage {
     private formBuilder: FormBuilder,
     private router: Router,
     private toast: ToastrService,
-    private _userService: UserService
+    private _userService: UserService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -35,27 +35,22 @@ export class LoginPage {
     const user: User = {
       email: email,
       password: password,
-      nombrePaciente: '',
-      apellidoPaciente: '',
-      idPaciente: '',
-      region: '',
-      comuna: '',
-      role: ''
     };
 
     this._userService.login(user).subscribe({
       next: (response) => {
         const token = response.token;  // Asegúrate de que el token se extrae correctamente
+        const tipo = response.tipo;
         localStorage.setItem('token', token);
         this.toast.success('Inicio de sesión exitoso');
 
         const decodedToken: any = jwtDecode(token);
-        const userRole = decodedToken.role;
+        const rut = decodedToken.rut;
 
-        if (userRole == 'admin') {
-          this.router.navigate(['/home-admin']);
-        } else {
+        if (tipo == 1) {
           this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/home-admin']);
         }
       },
       error: (err: HttpErrorResponse) => {

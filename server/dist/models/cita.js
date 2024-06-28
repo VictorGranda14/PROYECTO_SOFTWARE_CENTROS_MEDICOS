@@ -22,7 +22,7 @@ const cita = connection_1.default.define('cita', {
     idPaciente: {
         type: sequelize_1.DataTypes.STRING
     },
-    idFuncionario: {
+    idFuncionarioSalud: {
         type: sequelize_1.DataTypes.STRING
     }
 }, {
