@@ -3,6 +3,8 @@ Repositorio que contiene un prototipo funcional de un software para ayudar a la 
 
 ### Instrucciones uso
 
+* Se debe clonar el repositorio en su IDE de preferencia.
+
 1.-Instalar todas las dependencias del proyecto con "npm install" en el directorio del proyecto.
 
 2.-Instalar Node.js desde su sitio oficial en la web.
